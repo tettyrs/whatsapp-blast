@@ -12,6 +12,9 @@ load_dotenv()
 @app.post("/blast")
 def blast_whatsapp(req: WhatsappBlastRequest):
     try:
+        phoneNumId = os.getenv("PHONE_NUMBER_ID")
+        messageLang = os.getenv("MSG_LANG")
+        token = os.getenv("MSG_TOKEN")
 
         reqDict = req.dict()
         reqDict["phone_number"] = "628xxx"
@@ -20,10 +23,9 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         phoneNum = req.phone_number.strip()
         templateName = req.template_name.strip()
         statusCode = 0
-
-        url = os.getenv("META_ENDPOINT")
-        messageLang = os.getenv("MSG_LANG")
-        token = os.getenv("MSG_TOKEN")
+        
+        url =  "https://graph.facebook.com/v21.0/{}/messages".format(phoneNumId)
+        
 
         reqTmpl = {
         "messaging_product": "whatsapp",
