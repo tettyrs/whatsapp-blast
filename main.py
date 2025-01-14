@@ -45,6 +45,7 @@ def blast_whatsapp(req: WhatsappBlastRequest):
 
             
         else:
+            url = "https://api.whatsapp.com/v1/messages"
             reqTmpl = {
             "messaging_product": "whatsapp",
             "to": "",
