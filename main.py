@@ -15,6 +15,7 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         phoneNumId = os.getenv("PHONE_NUMBER_ID")
         messageLang = os.getenv("MSG_LANG")
         token = os.getenv("MSG_TOKEN")
+        param1Name = os.getenv("PARAM1_NAME")
 
         reqDict = req.dict()
         reqDict["phone_number"] = "628xxx"
@@ -45,7 +46,6 @@ def blast_whatsapp(req: WhatsappBlastRequest):
 
             
         else:
-            url = "https://api.whatsapp.com/v1/messages"
             reqTmpl = {
             "messaging_product": "whatsapp",
             "to": "",
@@ -59,9 +59,10 @@ def blast_whatsapp(req: WhatsappBlastRequest):
                 {
                     "type": "body",
                     "parameters": [{
-                "type": "text",
-                "text": param1
-            }]
+                        "type": "text",
+                        "parameter_name": "",
+                        "text": param1
+                    }]
                 }
                 ]
             }
@@ -70,14 +71,17 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         reqTmpl["to"] = phoneNum
         reqTmpl["template"]["name"] = templateName
         reqTmpl["template"]["language"]["code"] =  messageLang
+        reqTmpl["template"]["components"][0]["parameters"][0]["parameter_name"]= param1Name
         if param2:
             reqTmpl["template"]["components"][1]["parameters"].append({
             "type": "text",
+            "parameter_name":"param2",
             "text": param2
         })
         if param3:
             reqTmpl["template"]["components"][2]["parameters"].append({
             "type": "text",
+            "parameter_name":"param3",
             "text": param3
         })
         
