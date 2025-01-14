@@ -85,7 +85,7 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         'Authorization': 'Bearer {}'.format(token)
         }
     
-        response = requests.post(url, headers=headers, data=json.dumps(reqTmpl))
+        response = requests.post(url, headers=headers, data=json.dumps(reqTmpl, indent=4))
         reqTmpl["to"] = "628xxx"
         logger.info("Sending message to customer. Send this request payload to Meta : {}".format(reqTmpl))
         strRes = response.text
