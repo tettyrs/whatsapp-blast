@@ -57,7 +57,10 @@ def blast_whatsapp(req: WhatsappBlastRequest):
                 "components": [
                 {
                     "type": "body",
-                    "parameters": []
+                    "parameters": [{
+                "type": "text",
+                "text": param1
+            }]
                 }
                 ]
             }
@@ -66,10 +69,6 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         reqTmpl["to"] = phoneNum
         reqTmpl["template"]["name"] = templateName
         reqTmpl["template"]["language"]["code"] =  messageLang
-        reqTmpl["template"]["components"][0]["parameters"].append({
-            "type": "text",
-            "text": param1
-        })
         if param2:
             reqTmpl["template"]["components"][1]["parameters"].append({
             "type": "text",
