@@ -22,27 +22,66 @@ def blast_whatsapp(req: WhatsappBlastRequest):
 
         phoneNum = req.phone_number.strip()
         templateName = req.template_name.strip()
+        param1 = req.param1.strip() if req.param1 != None else req.param1
+        param2 = req.param2.strip() if req.param2 != None else req.param2
+        param3 = req.param3.strip() if req.param3 != None else req.param3
         statusCode = 0
         
         url =  "https://graph.facebook.com/v21.0/{}/messages".format(phoneNumId)
         
-
-        reqTmpl = {
-        "messaging_product": "whatsapp",
-        "to": "",
-        "type": "template",
-        "template": {
-            "name": "",
-            "language": {
-            "code": ""
+        if templateName == "hello_world":
+            reqTmpl = {
+            "messaging_product": "whatsapp",
+            "to": "",
+            "type": "template",
+            "template": {
+                "name": "",
+                "language": {
+                "code": ""
+                }
             }
-        }
-        }
+            }
+            
 
+            
+        else:
+            reqTmpl = {
+            "messaging_product": "whatsapp",
+            "to": "",
+            "type": "template",
+            "template": {
+                "name": "",
+                "language": {
+                "code": ""  
+                },
+                "components": [
+                {
+                    "type": "body",
+                    "parameters": [
+                    {
+                        "type": "text",
+                        "text": ""  
+                    },
+                    {
+                        "type": "text",
+                        "text": ""  
+                    },
+                    {
+                        "type": "text",
+                        "text": ""  
+                    }
+                    ]
+                }
+                ]
+            }
+            }
+            
         reqTmpl["to"] = phoneNum
         reqTmpl["template"]["name"] = templateName
         reqTmpl["template"]["language"]["code"] =  messageLang
-
+        reqTmpl["template"]["components"][0]["parameters"][0]["text"] = param1
+        reqTmpl["template"]["components"][0]["parameters"][1]["text"] = param2
+        reqTmpl["template"]["components"][0]["parameters"][2]["text"] = param3
 
         headers = {
         'Content-Type': 'application/json',
