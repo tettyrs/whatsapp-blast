@@ -66,15 +66,21 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         reqTmpl["to"] = phoneNum
         reqTmpl["template"]["name"] = templateName
         reqTmpl["template"]["language"]["code"] =  messageLang
-        reqTmpl["template"]["components"][0]["parameters"][0]["type"] = "text"
-        reqTmpl["template"]["components"][0]["parameters"][0]["text"] = param1
+        reqTmpl["template"]["components"][0]["parameters"].append({
+            "type": "text",
+            "text": param1
+        })
         if param2:
-            reqTmpl["template"]["components"][1]["parameters"][1]["type"] = "text"
-            reqTmpl["template"]["components"][1]["parameters"][1]["text"] = param2
+            reqTmpl["template"]["components"][1]["parameters"].append({
+            "type": "text",
+            "text": param2
+        })
         if param3:
-            reqTmpl["template"]["components"][2]["parameters"][2]["type"] = "text"
-            reqTmpl["template"]["components"][2]["parameters"][2]["text"] = param3
-
+            reqTmpl["template"]["components"][2]["parameters"].append({
+            "type": "text",
+            "text": param3
+        })
+        
         headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer {}'.format(token)
