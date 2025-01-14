@@ -5,17 +5,19 @@ from fastapi.responses import JSONResponse
 from loguru import logger
 from req import WhatsappBlastRequest
 from dotenv import load_dotenv
+from configs import Config
 
 app = FastAPI()
 load_dotenv()
+CONFIG = Config()
 
 @app.post("/blast")
 def blast_whatsapp(req: WhatsappBlastRequest):
     try:
-        phoneNumId = os.getenv("PHONE_NUMBER_ID")
-        messageLang = os.getenv("MSG_LANG")
-        token = os.getenv("MSG_TOKEN")
-        param1Name = os.getenv("PARAM1_NAME")
+        phoneNumId = CONFIG.phoneNumId
+        messageLang = CONFIG.messageLang
+        token = CONFIG.token
+        param1Name = CONFIG.param1Name
 
         reqDict = req.dict()
         reqDict["phone_number"] = "628xxx"
