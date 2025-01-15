@@ -1,14 +1,12 @@
 import requests
-import json, os
+import json
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from loguru import logger
 from req import WhatsappBlastRequest
-from dotenv import load_dotenv
 from configs import Config
 
 app = FastAPI()
-load_dotenv()
 CONFIG = Config()
 
 @app.post("/blast")
