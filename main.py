@@ -105,13 +105,13 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         reqTmpl["template"]["name"] = templateName
         reqTmpl["template"]["language"]["code"] =  messageLang
         if param2:
-                reqTmpl["template"]["components"][1]["parameters"].append({
+                reqTmpl["template"]["components"][0]["parameters"].append({
             "type": "text",
             "parameter_name":"2",
             "text": param2
         })
         if param3:
-            reqTmpl["template"]["components"][2]["parameters"].append({
+            reqTmpl["template"]["components"][0]["parameters"].append({
             "type": "text",
             "parameter_name":"3",
             "text": param3
