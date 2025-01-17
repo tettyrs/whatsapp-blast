@@ -15,7 +15,6 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         phoneNumId = CONFIG.phoneNumId
         messageLang = CONFIG.messageLang
         token = CONFIG.token
-        param1Name = CONFIG.param1Name
 
         reqDict = req.dict()
         reqDict["phone_number"] = "628xxx"
@@ -92,7 +91,7 @@ def blast_whatsapp(req: WhatsappBlastRequest):
                     "type": "body",
                     "parameters": [{
                         "type": "text",
-                        "parameter_name": f"{param1Name}",
+                        "parameter_name": "1",
                         "text": f"{param1}"
                     }]
                 }
@@ -108,13 +107,13 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         if param2:
                 reqTmpl["template"]["components"][1]["parameters"].append({
             "type": "text",
-            "parameter_name":"param2",
+            "parameter_name":"2",
             "text": param2
         })
         if param3:
             reqTmpl["template"]["components"][2]["parameters"].append({
             "type": "text",
-            "parameter_name":"param3",
+            "parameter_name":"3",
             "text": param3
         })
         
