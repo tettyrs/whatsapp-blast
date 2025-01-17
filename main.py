@@ -42,9 +42,41 @@ def blast_whatsapp(req: WhatsappBlastRequest):
                 }
             }
             }
-            
-
-            
+        elif 'otp' in templateName:
+            reqTmpl = {
+                "messaging_product": "whatsapp",
+                "recipient_type": "individual",
+                "to": "",
+                "type": "template",
+                "template": {
+                    "name": "",
+                    "language": {
+                    "code": ""
+                    },
+                    "components": [
+                    {
+                        "type": "body",
+                        "parameters": [
+                        {
+                            "type": "text",
+                            "text": f"{param1}"
+                        }
+                        ]
+                    },
+                    {
+                        "type": "button",
+                        "sub_type": "url",
+                        "index": "0",
+                        "parameters": [
+                        {
+                            "type": "text",
+                            "text": f"{param1}"
+                        }
+                        ]
+                    }
+                    ]
+                }
+                }
         else:
             reqTmpl = {
             "messaging_product": "whatsapp",
@@ -60,20 +92,21 @@ def blast_whatsapp(req: WhatsappBlastRequest):
                     "type": "body",
                     "parameters": [{
                         "type": "text",
-                        "parameter_name": "",
-                        "text": param1
+                        "parameter_name": f"{param1Name}",
+                        "text": f"{param1}"
                     }]
                 }
                 ]
             }
             }
+        
+
             
         reqTmpl["to"] = phoneNum
         reqTmpl["template"]["name"] = templateName
         reqTmpl["template"]["language"]["code"] =  messageLang
-        reqTmpl["template"]["components"][0]["parameters"][0]["parameter_name"]= param1Name
         if param2:
-            reqTmpl["template"]["components"][1]["parameters"].append({
+                reqTmpl["template"]["components"][1]["parameters"].append({
             "type": "text",
             "parameter_name":"param2",
             "text": param2

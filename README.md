@@ -3,7 +3,10 @@
 request payload :
 {
 	"phone_number":"628xxx",
-	"template_name":"hello_world"
+	"template_name":"{template-otp-or-non-top}",
+	"param1":"12345",
+	"param2":"",
+	"param3":"",
 }
 
 
