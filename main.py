@@ -29,7 +29,7 @@ def blast_whatsapp(req: WhatsappBlastRequest):
         
         url =  "https://graph.facebook.com/v21.0/{}/messages".format(phoneNumId)
         
-        if param1 != '' or param1 == None:
+        if param1 == '' or param1 == None:
             reqTmpl = {
             "messaging_product": "whatsapp",
             "to": "",
